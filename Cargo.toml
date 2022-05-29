@@ -25,6 +25,8 @@ http-types = "*"
 maud = { version = "*", features = ["tide"] }
 mime = "*"
 mime_guess = "2"
+rst_parser = "0.3"
+rst_renderer = "0.3"
 serde = { version = "1.0", features = ["derive"] }
 tide = "0.16.0"
 urlencoding = "2"

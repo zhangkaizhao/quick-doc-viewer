@@ -14,8 +14,10 @@ use crate::{
     Templates,
     guess_mime_type,
     is_markdown,
+    is_rst,
     read_text_file_to_string,
     markdown,
+    rst_to_html,
 };
 
 #[derive(Clone)]
@@ -74,6 +76,11 @@ async fn preview(req: Request<State>) -> Result<Response> {
             let html_content = templates.page(&path_string, &content).into_string();
             return Ok(html_response(html_content));
         },
+        "restructuredtext" => {
+            let content = rst_to_html(&content);
+            let html_content = templates.page(&path_string, &content).into_string();
+            return Ok(html_response(html_content));
+        },
         "plain_text" => {
             let html_content = templates.text(&path_string, &content).into_string();
             return Ok(html_response(html_content));
@@ -89,6 +96,9 @@ async fn preview(req: Request<State>) -> Result<Response> {
         MimeType::Text => {
             let html_content = if is_markdown(&path_string) {
                 let content = markdown(&content);
+                templates.page(&path_string, &content).into_string()
+            } else if is_rst(&path_string) {
+                let content = rst_to_html(&content);
                 templates.page(&path_string, &content).into_string()
             } else {
                 templates.text(&path_string, &content).into_string()

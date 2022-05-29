@@ -74,12 +74,14 @@ impl Templates {
     fn actions(&self, path: &str) -> Markup {
         let raw_url = path.to_string() + "?raw=true";
         let markdown_url = path.to_string() + "?format=markdown";
+        let rst_url = path.to_string() + "?format=restructuredtext";
         let plain_text_url = path.to_string() + "?format=plain_text";
         html! {
             div class="actions" {
                 a href=(raw_url) { "raw" }
                 a href=(path) { "preview" }
                 a href=(markdown_url) { "preview as Markdown" }
+                a href=(rst_url) { "preview as reStructuredText" }
                 a href=(plain_text_url) { "preview as plain text" }
             }
         }

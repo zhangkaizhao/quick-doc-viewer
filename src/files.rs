@@ -4,6 +4,8 @@ use std::path::Path;
 use async_std::fs;
 use chardetng::EncodingDetector;
 use comrak::{ComrakOptions, markdown_to_html};
+use rst_parser::parse as parse_rst;
+use rst_renderer::render_html as render_rst_to_html;
 use walkdir::{DirEntry, WalkDir};
 
 use crate::constants::{
@@ -20,6 +22,12 @@ pub fn is_markdown(file_name: &str) -> bool {
     let v: Vec<&str> = file_name.rsplitn(2, ".").collect();
     let ext = v[0];
     MARKDOWN_FILE_EXTENSIONS.contains(&ext.to_lowercase().as_str())
+}
+
+pub fn is_rst(file_name: &str) -> bool {
+    let v: Vec<&str> = file_name.rsplitn(2, ".").collect();
+    let ext = v[0];
+    ext.to_lowercase().as_str() == "rst"
 }
 
 pub fn is_special_file(path: &str) -> bool {
@@ -143,4 +151,29 @@ pub fn markdown(content: &str) -> String {
     options.render.unsafe_ = true;
     // options.render.escape = true;
     markdown_to_html(content, &options)
+}
+
+pub fn rst_to_html(content: &str) -> String {
+    // Note: there are a lot of `unimplemented!` in the rst_parser crate which cause panics here.
+    match parse_rst(content) {
+        Ok(document) => {
+            let mut out: Vec<u8> = vec![];
+            let standalone = false;
+            match render_rst_to_html(&document, &mut out, standalone) {
+                Ok(()) => String::from_utf8(out).unwrap(),
+                Err(err) => {
+                    format!(
+                        "Failed to render file content as reStructuredText to html: {}",
+                        err.to_string()
+                    ).to_string()
+                },
+            }
+        },
+        Err(err) => {
+            format!(
+                "Failed to parse file content as reStructuredText: {}",
+                err.to_string()
+            ).to_string()
+        }
+    }
 }
