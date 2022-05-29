@@ -1,0 +1,24 @@
+# Tech
+
+Web application/server: [tide]
+
+HTML templating: [maud]
+
+URL percentage decoding: [urlencoding]
+
+MIME/MediaType guessing by file extension: [mime_guess]
+
+Character encoding: [chardetng] and [encodings_rs]
+
+Markdown parsing: [comrak]
+
+File listing: [walkdir]
+
+[chardetng]: https://github.com/hsivonen/chardetng
+[comrak]: https://github.com/kivikakk/comrak
+[encodings_rs]: https://github.com/hsivonen/encoding_rs
+[maud]: https://github.com/lambda-fairy/maud
+[mime_guess]: https://github.com/abonander/mime_guess
+[tide]: https://github.com/http-rs/tide
+[urlencoding]: https://github.com/kornelski/rust_urlencoding
+[walkdir]: https://github.com/BurntSushi/walkdir

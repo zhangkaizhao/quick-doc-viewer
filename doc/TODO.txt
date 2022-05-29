@@ -1,0 +1,20 @@
+# TODO
+
+* Support more formats e.g. AsciiDoc, reStructuredText, etc. (this requires related libraries in pure Rust)
+
+  - reStructuredText: [rst] does not have complete implementation of the reStructuredText specification
+  - AsciiDoc: there are no implementation of the AsciiDoc specitification in pure Rust
+
+* Cache for converted html from Markdown, etc.
+
+* Better UI for page
+
+* Tests
+
+* Markdown: text between front matter delimiters as metadata (maybe)
+
+* Command line arguments or configuration file (maybe)
+
+* Distribution as GUI application using Tauri or Flutter (maybe)
+
+[rst]: https://github.com/flying-sheep/rust-rst

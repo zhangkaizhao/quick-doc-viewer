@@ -1,0 +1,46 @@
+# Quick doc viewer
+
+Page UI design draft:
+
+    ------------------------------------------------------------------------------------------------------------
+    [Files] | [README if present] [SUMMARY if present] [home if present] [index if present]
+    ------------------------------------------------------------------------------------------------------------
+    Location: [root] / [sub dir] / ... / [current dir] / [current file]
+    ------------------------------------------------------------------------------------------------------------
+    [raw] [preview] [preview as Markdown] [preview as plain text]
+    ------------------------------------------------------------------------------------------------------------
+    content
+    ------------------------------------------------------------------------------------------------------------
+
+Special files:
+
+    README[.*]
+    SUMMARY[.*]
+    home[.*]
+    index[.*]
+
+URI paths:
+
+    /
+    /{path/to/file}
+    /{path/to/file}?format=markdown
+    /{path/to/file}?raw=true
+
+Supported formats for preview:
+
+* Markdown
+
+If the value of format parameter is not provided, guess the preview format from file extension of the file name.
+
+Content of files:
+
+    [path/to/file]
+    [path/to/file]
+    [path/to/file]
+    ...
+
+Directories ignored:
+
+* .git
+* .hg
+* .svn

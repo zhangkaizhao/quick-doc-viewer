@@ -1,0 +1,31 @@
+[package]
+name = "quick-doc-viewer"
+version = "0.1.0"
+description = "A quick documentation viewer for developers to preview documentations"
+authors = [
+    "Kaizhao Zhang <zhangkaizhao@gmail.com>",
+]
+keywords = ["documentation", "markdown", "server"]
+categories = [
+  "command-line-utilities",
+  "text-processing",
+  "web-programming",
+]
+edition = "2021"
+license = "MIT OR Apache-2.0"
+readme = "README.txt"
+repository = "https://github.com/zhangkaizhao/quick-doc-viewer"
+
+[dependencies]
+async-std = { version = "1.8.0", features = ["attributes"] }
+chardetng = "0.1"
+comrak = { version= "0.12", default-features = false }
+encoding_rs = "*"
+http-types = "*"
+maud = { version = "*", features = ["tide"] }
+mime = "*"
+mime_guess = "2"
+serde = { version = "1.0", features = ["derive"] }
+tide = "0.16.0"
+urlencoding = "2"
+walkdir = "2"
